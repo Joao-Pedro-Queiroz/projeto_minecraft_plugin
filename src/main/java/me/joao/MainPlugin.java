@@ -1,24 +1,24 @@
 package me.joao;
 
-import net.md_5.bungee.api.ChatColor;
-import org.bukkit.GameRule;
+import me.joao.listener.LordListener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class MainPlugin extends JavaPlugin {
 
     @Override
     public void onLoad() {
-        getServer().getConsoleSender().sendMessage(ChatColor.GOLD + "Loading Plugin");
+        getServer().getConsoleSender().sendMessage("Loading InsperCodingPlugin...");
     }
 
     @Override
     public void onEnable() {
-        getServer().getConsoleSender().sendMessage(ChatColor.DARK_AQUA + "Enabling Plugin");
-        getServer().getWorld("world").setBlockData();
+        getServer().getConsoleSender().sendMessage("Plugin is now enabled!");
+
+        getServer().getPluginManager().registerEvents(new LordListener(), this);
     }
 
     @Override
     public void onDisable() {
-        getServer().getConsoleSender().sendMessage(ChatColor.DARK_RED + "Disabling Plugin");
+        getServer().getConsoleSender().sendMessage("Plugin is now disabled!");
     }
 }

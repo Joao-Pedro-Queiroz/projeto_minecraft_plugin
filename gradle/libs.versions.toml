@@ -1,0 +1,50 @@
+[versions]
+
+# Gradle Plugins
+shadow = "8.1.1"
+lombok-plugin = "8.11"
+
+# External Libraries
+kotlin = "2.1.0"
+annotations = "26.0.1"
+lombok = "1.18.36"
+adventure = "4.20.0"
+
+# Minecraft Kernel
+spigot = "1.21.5-R0.1-SNAPSHOT"
+
+# Compatibility Libraries
+luckperms = "5.4"
+
+[plugins]
+# Java
+shadow = { id = "com.github.johnrengelman.shadow", version.ref = "shadow" }
+lombok-java = { id = "io.freefair.lombok", version.ref = "lombok-plugin" }
+
+# Kotlin
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+lombok-kotlin = { id = "org.jetbrains.kotlin.plugin.lombok", version.ref = "kotlin" }
+
+[libraries]
+# Annotations
+annotations = { module = "org.jetbrains:annotations", version.ref = "annotations" }
+
+# Lombok
+lombok = { module = "org.projectlombok:lombok", version.ref = "lombok" }
+
+# Minecraft Server
+spigot-api = { group = "org.spigotmc", name = "spigot-api", version.ref = "spigot" }
+
+# Adventure API
+adventure-api = { group = "net.kyori", name = "adventure-api", version.ref = "adventure" }
+adventure-gson = { group = "net.kyori", name = "adventure-text-serializer-gson", version.ref = "adventure" }
+adventure-legacy = { group = "net.kyori", name = "adventure-text-serializer-legacy", version.ref = "adventure" }
+adventure-plain = { group = "net.kyori", name = "adventure-text-serializer-plain", version.ref = "adventure" }
+
+# Plugins
+luckperms = { group = "net.luckperms", name = "api", version.ref = "luckperms" }
+
+[bundles]
+
+spigot = ["spigot-api"]
+adventure = ["adventure-api", "adventure-gson", "adventure-legacy", "adventure-plain"]

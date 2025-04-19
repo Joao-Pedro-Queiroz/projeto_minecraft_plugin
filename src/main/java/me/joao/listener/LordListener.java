@@ -1,37 +1,51 @@
 package me.joao.listener;
 
+
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+import me.joao.MainPlugin;
 import me.joao.profiles.Profile;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Map;
-import java.util.UUID;
-import java.util.concurrent.ConcurrentHashMap;
-
+@RequiredArgsConstructor
 public class LordListener implements Listener {
 
-    private final Map<UUID, Profile> onlineProfiles = new ConcurrentHashMap<>();
+    @NonNull
+    @NotNull
+    private final MainPlugin pl;
 
-    @EventHandler
-    public void onPlayerJoin(@NotNull PlayerJoinEvent event) {
-        Profile profile = new Profile(event.getPlayer().getUniqueId());
+    @EventHandler(priority = EventPriority.LOWEST)
+    private void onEntry(@NotNull PlayerJoinEvent event) {
+        event.setJoinMessage(null);
 
-        onlineProfiles.put(profile.getUUID(), profile);
+        Profile profile = pl.getProfileManager().getProfile(event.getPlayer().getUniqueId());
 
-        profile.sendMessage("&aWelcome to the server, &6" + profile.getName() + "&a!");
+        if (profile.hasPermission("insper.code.mensagem.entrada")) {
+            profile.sendMessage("&c&lSeja bem-vindo(a) ao Insper Code!");
+        }
+        else {
+            profile.sendMessage("&c&lQue pena, você não pode ver a mensagem de entrada.");
+        }
     }
 
     @EventHandler
-    public void onPlayerQuit(@NotNull PlayerQuitEvent event) {
-        Profile profile = onlineProfiles.remove(event.getPlayer().getUniqueId());
+    private void onPlayerDie(PlayerDeathEvent event) {
 
-        if (profile != null) {
-            Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', '&' + profile.getName() + "&has left the server"));
+    }
+
+    @EventHandler
+    private void onPlayerMove(@NotNull PlayerMoveEvent event) {
+        Profile profile = pl.getProfileManager().getProfile(event.getPlayer().getUniqueId());
+
+        if (profile.hasPermission("insper.code.congelar")) {
+            event.getPlayer().sendMessage("Você não pode se mover!");
+            event.setCancelled(true); // Congela o jogador no lugar
         }
     }
 }

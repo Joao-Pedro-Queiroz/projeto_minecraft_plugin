@@ -8,6 +8,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
+@Getter
 public class MainPlugin extends JavaPlugin {
 
     private ProfileManager profileManager;

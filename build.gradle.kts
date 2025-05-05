@@ -18,6 +18,7 @@ version = "0.0.0-SNAPSHOT"
 
 repositories {
     maven("https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
+    maven ("https://repo.dmulloy2.net/repository/public/")
     mavenCentral()
 }
 
@@ -38,6 +39,7 @@ dependencies {
 
     // Plugins Compatibility
     compileOnly(libs.luckperms)
+    compileOnly(libs.protocolLib)
 }
 
 java {

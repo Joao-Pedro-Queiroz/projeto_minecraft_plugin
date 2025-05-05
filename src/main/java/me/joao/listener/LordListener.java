@@ -3,6 +3,7 @@ package me.joao.listener;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import net.kyori.adventure.text.Component;
 import me.joao.MainPlugin;
 import me.joao.profiles.Profile;
 import org.bukkit.event.EventHandler;
@@ -27,25 +28,11 @@ public class LordListener implements Listener {
         Profile profile = pl.getProfileManager().getProfile(event.getPlayer().getUniqueId());
 
         if (profile.hasPermission("insper.code.mensagem.entrada")) {
-            profile.sendMessage("&c&lSeja bem-vindo(a) ao Insper Code!");
+            profile.sendMessage(Component.text("&c&lSeja bem-vindo(a) ao Insper Code!"));
         }
         else {
-            profile.sendMessage("&c&lQue pena, você não pode ver a mensagem de entrada.");
-        }
-    }
-
-    @EventHandler
-    private void onPlayerDie(PlayerDeathEvent event) {
-
-    }
-
-    @EventHandler
-    private void onPlayerMove(@NotNull PlayerMoveEvent event) {
-        Profile profile = pl.getProfileManager().getProfile(event.getPlayer().getUniqueId());
-
-        if (profile.hasPermission("insper.code.congelar")) {
-            event.getPlayer().sendMessage("Você não pode se mover!");
-            event.setCancelled(true); // Congela o jogador no lugar
+            profile.sendMessage(
+                    Component.text("&c&lQue pena, você não pode ver a mensagem de entrada."));
         }
     }
 }

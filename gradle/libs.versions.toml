@@ -9,12 +9,14 @@ kotlin = "2.1.0"
 annotations = "26.0.1"
 lombok = "1.18.36"
 adventure = "4.20.0"
+adeventure-platform = "4.3.4"
 
 # Minecraft Kernel
 spigot = "1.21.5-R0.1-SNAPSHOT"
 
 # Compatibility Libraries
 luckperms = "5.4"
+protocolLib = "5.3.0"
 
 [plugins]
 # Java
@@ -40,11 +42,13 @@ adventure-api = { group = "net.kyori", name = "adventure-api", version.ref = "ad
 adventure-gson = { group = "net.kyori", name = "adventure-text-serializer-gson", version.ref = "adventure" }
 adventure-legacy = { group = "net.kyori", name = "adventure-text-serializer-legacy", version.ref = "adventure" }
 adventure-plain = { group = "net.kyori", name = "adventure-text-serializer-plain", version.ref = "adventure" }
+adventure-platform = { group = "net.kyori", name = "adventure-platform-bukkit", version.ref = "adeventure-platform" }
 
 # Plugins
 luckperms = { group = "net.luckperms", name = "api", version.ref = "luckperms" }
+protocolLib = {group = "com.comphenix.protocol", name = "ProtocolLib", version.ref = "protocolLib"}
 
 [bundles]
 
 spigot = ["spigot-api"]
-adventure = ["adventure-api", "adventure-gson", "adventure-legacy", "adventure-plain"]
+adventure = ["adventure-api", "adventure-gson", "adventure-legacy", "adventure-plain", "adventure-platform"]

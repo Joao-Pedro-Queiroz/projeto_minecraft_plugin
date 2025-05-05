@@ -1,2 +1,2 @@
-rootProject.name = "minecraft"
+rootProject.name = "LordPlugin"
 
